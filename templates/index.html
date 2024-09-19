@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Water Predictor</title>
+    <style>
+        /* Flexbox container for vertical layout */
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        /* Center the h1 */
+        h1 {
+            text-align: center;
+        }
+
+        /* Form element styling */
+        .form-control, .btn {
+            display: block;
+            margin-bottom: 15px;  /* Add some space between form elements */
+            width: 100%;
+            max-width: 300px;  /* Ensure the form input and button don't get too wide */
+        }
+
+        /* Resizing the image */
+        .resized-image {
+            width: 300px;  /* Set the width of the image */
+            height: auto;  /* Maintain aspect ratio */
+            border: 2px solid black;  /* Optional: Add a border */
+            margin-top: 20px;  /* Add space between the form and image */
+        }
+    </style>
+</head>
+<body>
+    <h1>Water Predictor</h1>
+
+    <!-- Container for everything to be centered vertically -->
+    <div class="container">
+        <!-- Form for file input and button -->
+        <form action='/predict' method="post" enctype="multipart/form-data">
+            <input class="form-control" type="file" name="imagefile">
+            <input class="btn btn-primary" type="submit" value="Predict Image">
+        </form>
+
+        <!-- Image (displayed below the form) -->
+        {% if result_image %}
+        <img src="{{ url_for('send_image', filename='result.png') }}"
+             alt="Result Image"
+             class="resized-image">
+        {% endif %}
+    </div>
+</body>
+</html>
